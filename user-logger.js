@@ -7,9 +7,8 @@ const login = (username, password) => {
 	const userFound = getUserByName(username);
 	if (!userFound) return { message: 'User not found' };
 
-	const userCredentials = userFound.password.split(':');
-	const storedSalt = userCredentials[0];
-	const storedSeasonHash = userCredentials[1];
+	// Array Destructuring 
+	const [storedSalt, storedSeasonHash] = userFound.password.split(':');
 
 	const hashedPassword = hashSeasonPassword(password, storedSalt);
 
